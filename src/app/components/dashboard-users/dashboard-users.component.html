@@ -18,7 +18,7 @@
           </tr>
         <tr *ngFor="let i of availableUsers" style="background-color: white;">
           <td>
-            {{ i.firstName }}
+            {{ i.firstName | uppercase }}
           </td>
           <td>
             {{ i.lastName }}
@@ -27,7 +27,7 @@
             {{ i.activityCode }}
           </td>
           <td>
-            {{ getElapsedTime(i.lastModifiedActivityTimeStamp) | date:'HH:mm:ss' }}
+            {{ i.lastModifiedActivityTimeStamp | activityDuration : "HH:mm:ss" | async}}
           </td>
         </tr>
       </table>

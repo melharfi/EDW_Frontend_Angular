@@ -3,6 +3,8 @@ import { UsersService } from 'src/app/api/services';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/api/models';
 import { Router } from '@angular/router';
+import * as signalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-users',
@@ -21,6 +23,7 @@ export class DashboardUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initLiveReload();
   }
 
   refreshUsers()
@@ -36,19 +39,22 @@ export class DashboardUsersComponent implements OnInit {
     });
   }
 
-  getElapsedTime(timpestamp?:number)
+  initLiveReload()
   {
-    var currentTime = Date.now();
-    var userActivityTime = (timpestamp as number) * 1000;
-    var elapsedTime = currentTime - userActivityTime;
+    const connection = new signalR.HubConnectionBuilder()
+      .configureLogging(signalR.LogLevel.Information)
+      .withUrl(environment.baseUrl + '/activityhub')
+      .build();
 
-    var date = new Date(elapsedTime);
-    // var hours = date.getHours();
-    // var minutes = "0" + date.getMinutes();
-    // var seconds = "0" + date.getSeconds();
-    // var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    // console.log("formattedTime = " + formattedTime);
+    connection.start().then(function () {
+      console.log('SignalR Connected!');
+    }).catch(function (err) {
+      return console.error(err.toString());
+    });
 
-    return date;
+    connection.on("ActivityChanged", () => {
+      this.refreshUsers();
+      console.log("ActivityChanged triggered");
+    });
   }
 }
