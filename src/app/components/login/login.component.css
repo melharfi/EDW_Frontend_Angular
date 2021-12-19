@@ -1,0 +1,62 @@
+.bg-container
+{
+	background-color: rgb(62, 118, 170);
+	height: 100vh;
+}
+
+/* Add padding to container elements */
+.container_x1
+{
+	position: fixed;
+	padding-left: 150px;
+	padding-top: 100px;
+}
+
+/* The Modal (background) */
+.modal_x1
+{
+	/*display: none;*/ /* Hidden by default */
+	position: absolute; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: calc(50% - 212px);
+	top: calc(50% - 175px);
+	width: 425px; /* Full width */
+	height: 350px; /* Full height */
+	background-image: url(/assets/images/components/login/authentification.png);
+}
+
+/* Modal Content/Box */
+.modal_x1-content
+{
+	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-authentication
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(50, 50, 50, 70%);
+	width: 100%;
+	height: 100vh;
+	z-index: 2;
+}
+
+.modal-authentication-message
+{
+	position: absolute; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: calc(50% - 150px);
+	top: calc(50% - 50px);
+	width: 300px; /* Full width */
+	height: 100px; /* Full height */
+	background-color: whitesmoke;
+	border-radius: 2%;
+	border: 2px solid cadetblue;
+	text-align: center;
+	color: red;
+	text-transform: capitalize;
+	padding-top: 10px;
+}

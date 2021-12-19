@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login Screen</title>
+</head>
+
+<body>
+<!-- The Modal (contains the Sign Up form) -->
+<div class="bg-container">
+  <div class="modal_x1">
+      <div class="container_x1">
+        <label [ngStyle]="{'color':'#ff9933'}">{{ identificationState }}</label><br><br><br>
+        <input type="text" placeholder="Enter Username" name="username" id="username"
+        [(ngModel)]="username" required
+        [ngStyle]="{borderColor:username.length === 0 ? 'red' : 'white'}" ><br><br>
+
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" class="psw"
+        [(ngModel)]="password" required
+          [ngStyle]="{borderColor: password.length === 0 ? 'red' : 'white'}" value="james123" /><br><br>
+
+        <img src="assets/images/components/login/authentification_button.png"
+      width="103" height="42" alt="" (click)="onClickIdentificationBtn()"
+      *ngIf="username.length > 0 && password.length > 0" />
+      </div>
+  </div>
+</div>
+</body>
+</html>
